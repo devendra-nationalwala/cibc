@@ -1,0 +1,121 @@
+<div>
+  <label for="startDate">Start Date:</label>
+  <input name="startDate" type="date" [(ngModel)]="startDate" placeholder="Start Date">
+  <label for="startDate">End Date:</label>
+  <input type="date" [(ngModel)]="endDate" placeholder="End Date">
+</div>
+<button (click)="findTransactions()" class="btn btn-primary btn-sm">Find Transactions</button>
+
+<table *ngIf="transactions.length > 0 " class="trans-list">
+  <thead>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Comments</th>
+    <th>Action</th>
+  </thead>
+  <tr *ngFor=" let transaction of transactions">
+    <td>{{transaction.id}}</td>
+    <td>{{transaction.date | date:'dd/MM/yyyy'}}</td>
+    <td>{{transaction["Comments"]}}</td>
+    <td><a href="#transactoinDiv" (click)="viewTransaction(transaction.id)">View</a></td>
+  </tr>
+</table>
+<p class="info" [style.opacity]="msgShow ? 1 : 0">No transactions found for this dates, kindly try with other date
+  range.</p>
+
+<div *ngIf="selectedTrans !== undefined " class="trans-details" id="transactoinDiv">
+  <h1><span>Transaction</span> #{{selectedTrans.id}}</h1>
+  <table>
+    <tr>
+      <td>
+        Date 
+      </td>
+      <td>
+        <span>{{selectedTrans.date | date:'dd/MM/yyyy'}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Amount
+      </td>
+      <td>
+        <span>{{selectedTrans.Amount}} {{selectedTrans.CurrencyCd}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Comment:</td>
+      <td>
+        <span>{{selectedTrans.Comments}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Status:</td>
+      <td>
+        <span>{{selectedTrans.status}}</span>
+      </td>
+    </tr>
+  </table>
+  <div class="customer">
+    <h1>Recipient</h1>
+    <table>
+      <tr>
+        <td>
+          Bank Name
+        </td>
+        <td>
+          {{selectedTrans.recipient.bank}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Account Number
+        </td>
+        <td>
+          {{selectedTrans.recipient.accountNumber}}
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>
+          {{selectedTrans.recipient.firstName}} {{selectedTrans.recipient.lastName}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Email
+        </td>
+        <td>
+          {{selectedTrans.recipient.email}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="customer">
+    <h1>Sender</h1>
+    <table>
+      <tr>
+        <td>
+          IDNumber
+        </td>
+        <td>
+          {{selectedTrans.sender.IDNumber}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Date of Birth
+        </td>
+        <td>
+          {{selectedTrans.sender.dateOfBirth| date:'dd/MM/yyyy' : '+0500'}}
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>
+          {{selectedTrans.sender.firstName}} {{selectedTrans.sender.lastName}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,132 @@
+@cibc     : #C41F3E;
+@cibc-dark: rgb(139, 29, 65);
+@tablet   :~"only screen and (max-width: 959px)";
+
+.transition-properties(...) {
+    -webkit-transition: @arguments;
+    -moz-transition   : @arguments;
+    -o-transition     : @arguments;
+    transition        : @arguments;
+}
+
+input {
+    display  : block;
+    padding  : 10px 20px;
+    font-size: 16px;
+
+    &:focus {
+        border : 2px solid @cibc;
+        outline: none;
+    }
+}
+
+label {
+    color    : @cibc;
+    font-size: 16px;
+    display  : block;
+    margin   : 10px 0 0 0;
+}
+
+button {
+    font-size       : 16px;
+    background-color: @cibc;
+    color           : #fff;
+    margin          : 10px 0 20px 0;
+    cursor          : pointer;
+    border          : 0;
+    padding         : 16px;
+    .transition-properties(0.2s);
+    &:focus,
+    &:active,
+    &:hover {
+        outline         : none;
+        background-color: @cibc-dark ;
+    }
+}
+.info{
+    background: #fff3cb;
+    color: #937514;
+    padding: 10px 40px;
+    display: table;
+    .transition-properties(0.3s);
+    
+}
+.trans-list {
+    width: auto;
+
+    th,
+    td {
+        padding: 5px 10px;
+
+        &:nth-child(4) {
+            text-align: center;
+        }
+    }
+
+    th {
+        color: @cibc;
+    }
+
+    a {
+        text-decoration: none !important;
+        color          : @cibc;
+
+        &:focus,
+        &:hover {
+            color: @cibc-dark;
+
+        }
+    }
+
+    @media @tablet {
+        width: 100%;
+
+        td {
+            &:nth-child(1) {
+                word-break: break-all;
+            }
+        }
+    }
+}
+
+.trans-details {
+    background-color: #efefef;
+    padding         : 50px;
+
+    h1 {
+        margin   : 0 0 15px;
+        font-size: 1.3rem;
+
+        span {
+            color: @cibc;
+        }
+    }
+
+    table {
+
+        td,
+        th {
+            padding: 5px 10px;
+        }
+    }
+
+    .customer {
+        position        : relative;
+        background-color: #cacaca;
+        margin          : 40px 20px 0 0;
+        display         : inline-block;
+        padding         : 31px 10px 10px 10px;
+        vertical-align  : top;
+
+        h1 {
+            position     : absolute;
+            background   : #fff;
+            left         : 15px;
+            top          : -17px;
+            font-size    : 17px;
+            padding      : 9px;
+            color        : #c41f3e;
+            border-radius: 6px;
+        }
+    }
+}
